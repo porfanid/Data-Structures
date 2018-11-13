@@ -13,6 +13,16 @@ public class Collection<Item> implements Iterable<Item> {
             this.next = next;
         }
     }
+    
+    Item get(int index)
+    {
+    	return toArray()[index];
+    }
+    
+    Item get()
+    {
+    	return get(toArray().length);
+    }
 
     Collection() {
         head = null;
@@ -30,6 +40,7 @@ public class Collection<Item> implements Iterable<Item> {
     {
         return new CollectionIterator();
     }
+    
     private class CollectionIterator implements Iterator<Item>
     {
         private Node current = head;
@@ -48,6 +59,39 @@ public class Collection<Item> implements Iterable<Item> {
             return item;
         }
     }
+    
+    Item[] toArray()
+    {
+    	int numberOfArrayElements=0;
+    	Node currentNode=head;
+    	while(currentNode!=null)
+    	{
+    		numberOfArrayElements++;
+    		currentNode=currentNode.next;
+    	}
+    	
+    	if(isEmpty())
+    	{
+    		return null;
+    	}
+    	
+    	Object[] tempArrayToInitializeTheItemArray=new Object[numberOfArrayElements];
+    	
+    	
+    	@SuppressWarnings("unchecked")
+		Item[] returnList=(Item[]) tempArrayToInitializeTheItemArray;
+    	
+    	currentNode=head;
+    	int i=0;
+    	while(i<numberOfArrayElements+1)
+    	{
+    		returnList[i]=currentNode.item;
+    		currentNode=currentNode.next;
+    		i++;
+    	}
+    	
+    	return returnList;
+    }
 
     public static void main(String[] args)
     {
@@ -59,4 +103,6 @@ public class Collection<Item> implements Iterable<Item> {
             System.out.println(""+k);
         }
     }
+    
+    
 }

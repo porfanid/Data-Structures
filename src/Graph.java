@@ -1,4 +1,4 @@
-import java.io.*;
+
 
 public class Graph {
 
@@ -8,7 +8,8 @@ public class Graph {
     private static boolean[] marked;
 	private int []parent;
 
-    public Graph(int N) {
+    @SuppressWarnings("unchecked")
+	public Graph(int N) {
         this.N = N;
         this.M = 0;
         
@@ -60,21 +61,34 @@ public class Graph {
          /* enter your code! */
         int k=-1;
 		Queue<Integer> Q = new Queue<Integer>();
+		
+		
 		System.out.print("hello World 1");
+		
 		marked[s] = true;
+		
 		Q.put(s);
 		//Q.trimToSize();
+		
 		int i=0;
 		while (i<N)
+		
 		{
 			System.out.print("hello World 2");
+			
+			System.out.println("The List Is Empty: "+Q.isEmpty());
+			
 			try {
 				k = Q.get();
+				System.out.println("k= "+k);
 				
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
+				//System.out.println("My name is Paul "+e.getMessage()+"Hello There");
 			}
+			
 			System.out.print("hello World 3");
+			
+			
 			for ( int v : adj(k) ) {		
 				if (!marked[v]) {
 					marked[v] = true;
@@ -82,6 +96,7 @@ public class Graph {
 					Q.put(v);
 				}
 			}
+			
 			i++;
 		}
 		System.out.print("hello World 4");
@@ -99,7 +114,7 @@ public class Graph {
     	int listLength=list.length;
     	for(int i=0;i<listLength;i++)
     	{
-    		System.out.print(result.List[i]);
+    		System.out.print("");
     	}
 
         return -1; // return -1 if w is not reachable from v

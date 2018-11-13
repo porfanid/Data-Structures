@@ -2,124 +2,62 @@ import java.util.Arrays;
 class Queue<Item> {
     
 	public static final int defaultSize=10;
-
-	Item[] List;
+	
+	Collection<Item> list;
+	
 
     Queue() {
-        List=createList(defaultSize);
+    	list=new Collection<Item>();
     }
     
     Item[] getList()
     {
-    	return List;
+    	return list.toArray();
     }
 
-    void grow(int newLength)
-    {
-    	if(newLength>List.length)
-    	{
-    		List=Arrays.copyOf(List,newLength);
-    	}
-    }
     
-    void grow()
-    {
-    	grow(List.length*2);
-    }
-
-    void trimToSize()
-    {
-    	//int ListSize=List.length;
-    	int elements=0;
-    	for (int i=0;i<List.length;i++)
-    	{
-    		if(List[i]!=null)
-    		{
-    			elements++;
-    		}
-    	}
-    	List=Arrays.copyOf(List,elements);
-    }
+    
 
     boolean isEmpty() {
-    	System.out.println(List.length);
-        return List.length==0; // change appropriately
+    	return list.isEmpty();
     }
 
     // insert new item in the queue
     void put(Item item) {
-        /* enter your code! */
-        int elements=0;
-    	for (int i=0;i<List.length;i++)
-    	{
-    		if(List[i]!=null)
-    		{
-    			elements++;
-    		}
-    	}
-    	try{
-    		List[elements+1] = item;
-    	}catch(Exception e)
-    	{
-    		grow();
-    		List[elements+1] = item;
-    	}
+        list.insert(item);
     }
 
     // extract least recent item from the queue
-    Item get() throws Exception {
-        /* 
-        *get the index of the first "not" null element from the list
-        */
-        int FirstNotNullElement=0;
-        for(int i=0;i<List.length;i++)
-        {
-        	if(List[i]!=null)
-        	{
-        		FirstNotNullElement=i;
-        		break;
-        	}
-        }
-
-        /* 
-        *If the position of the first "not" null element is greater than the 1/4 of the length of the list  
-        *trim the list
-        */
-
-        if(FirstNotNullElement>List.length/4)
-        {
-        	List=Arrays.copyOfRange(List,FirstNotNullElement,List.length);
-            trimToSize();
-    	}
-
-
-                
-        /*
-        *Exception for the case in which the list is empty
-        */
-
-        try{
-        	return List[FirstNotNullElement];
-        }catch(Exception e)
-        {
-        	throw new Exception("List is empty");
-        }
+    Item get(){
+    	System.out.println("I am trying to pull the element from the Array");
+        Item tempReturnItem= list.get();
+        System.out.println(" succedded to pull the element from the Array");
+        return tempReturnItem;
     }
     
-    private boolean equals(Object thisOne,Object otherOne){
-        if (otherOne instanceof Queue<?>){
-            if ( ((Queue<?>)otherOne).equals(thisOne) ){
-                return true;
-            }
-        }
-        return false;
-    }
 
     boolean contains(Item element)
     {
-    	for(Item item:List)
+    	for(Item item:list)
     	{
-    		if(equals(item,element))
+    		
+    		Class<?> elementClass=element.getClass();
+    		
+    		Class<?> itemClass=item.getClass();
+    		
+    		boolean areOfTheSameType = elementClass.equals(itemClass);
+    		
+    		if(!areOfTheSameType)
+    		{
+    			return false;
+    		}
+    		
+    		
+    		Object valueOfTheFirstItem=(Object) item;
+    		Object valueOfTheSelectedItem=(Object) element;
+    		
+    		
+    		if(elementClass.cast(valueOfTheSelectedItem).equals(itemClass.cast(valueOfTheFirstItem)))
     		{
     			return true;
     		}
