@@ -1,0 +1,42 @@
+Pavlos orfanidis  4134
+Pantelis rempakos 4279
+Giwrgos Kamaridhs 4264
+
+Enter input string > [({})]()                                                               
+f
+Input string = [({})]() , length = 8
+2 - 3, 1 - 4, 0 - 5, 6 - 7
+
+
+
+Enter input string > [({}){[]()}]{[()]}
+f
+Input string = [({}){[]()}]{[()]} , length = 18
+2 - 3, 1 - 4, 6 - 7, 8 - 9, 5 - 10, 0 - 11, 14 - 15, 13 - 16, 12 - 17
+
+
+
+Enter input string > {(})
+f
+Input string = {(}) , length = 4
+Syntax Error: The bracket in the 2nd position does not match the bracket in the 3rd position
+Syntax Error: The bracket in the 1st position does not match the bracket in the 4th position
+
+
+Enter input string > )(
+f
+Input string = )( , length = 2
+The element in the -1th position does not exist.
+The number of right parentheses is greater than the one of the left parentheses
+
+
+Enter input string > [()
+f
+Input string = [() , length = 3
+1 - 2
+
+Enter input string > [)(]
+f
+Input string = [)(] , length = 4
+Syntax Error: The bracket in the 1st position does not match the bracket in the 2nd position
+Syntax Error: The bracket in the 3rd position does not match the bracket in the 4th position
