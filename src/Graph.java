@@ -338,12 +338,15 @@ public class Graph {
      * @param currentNode
      * @return
      */
-    public boolean hasNext(int currentNode)
+    public boolean hasNeighbors(int currentNode,int desiredLength)
     {
-    	return adjacencyLists[currentNode].length>1;
+    	return adjacencyLists[currentNode].length>desiredLength;
     }
     
-    
+    public boolean hasNext(int currentNode)
+    {
+    	return hasNeighbors(currentNode, 1);
+    }
     
     
     
@@ -353,6 +356,11 @@ public class Graph {
     
     /**
      * Checks if a node contains a neighbor.
+     * 
+     * for every node next to the startNode,
+     * 
+     * if the current node
+     * 
      * @param startNode
      * @param desiredNeighbor
      * @return boolean whether the desiredNeighbor is connected to the startNode.
@@ -364,6 +372,7 @@ public class Graph {
     	
     	
     	boolean response=false;
+    	
     	for(Integer neighbor:allNeighbors)
     	{
     		if(neighbor.equals(desiredNeighbor))
@@ -431,15 +440,56 @@ public class Graph {
         /* enter your code! */    
     }
     
-    /* compute graph diameter */
-   int diameter()
-   {
-        int diam = numberOfVertices-1; /* initialization */
-        
-        /* enter your code! */
-        
-        return diam;
+    
+    
+    
+    
+    
+    /* Method to calculate the diameter and return it to main */
+    int diameter(int root) 
+    { 
+       System.out.println(height(root));
+    	return 0;
+    	
     }
+    
+    
+    int diameter()
+    {
+    	return diameter(0);
+    }
+    /*The function Compute the "height" of a tree. Height is the 
+    number f nodes along the longest path from the root node 
+    down to the farthest leaf node.*/
+  int height(int node) 
+  { 
+      /* base case tree is empty */
+      if (!hasNeighbors(node,0)) 
+      {
+    	  return 0; 
+      }
+      
+      int maxSize=0;
+      Iterable<Integer> allNeighbors=adj(node);
+      
+      for(Integer neighbor:allNeighbors)
+      {
+    	  if(neighbor.equals(node))
+    	  {
+    		  continue;
+    	  }
+    	  int newHeight=1+height(neighbor);
+    	  if(maxSize<newHeight)
+    	  {
+    		  maxSize=newHeight;
+    	  }
+      }
+      
+      return maxSize; 
+  }  
+    
+    
+    
     
     
    
