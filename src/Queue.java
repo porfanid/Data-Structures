@@ -1,4 +1,8 @@
-
+/**
+ *Pavlos Orfanidis 4134
+ *Pantelis Rempakos 4279
+ *Giorgos Kamaridis 4264
+ */
 
 /**
  * A class that creates a list based on the FIFO(First in  first out) sequence
@@ -187,9 +191,10 @@ class Queue<Item> {
     		Object valueOfTheFirstItem=(Object) item;
     		Object valueOfTheSelectedItem=(Object) element;
     		
-    		
+    		System.out.println("First: "+element+"\n"+"Second: "+item);
     		if(elementClass.cast(valueOfTheSelectedItem).equals(itemClass.cast(valueOfTheFirstItem)))
     		{
+    			
     			return true;
     		}
     		

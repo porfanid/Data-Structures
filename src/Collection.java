@@ -1,3 +1,14 @@
+/**
+ *Pavlos Orfanidis 4134
+ *Pantelis Rempakos 4279
+ *Giorgos Kamaridis 4264
+ */
+
+
+
+
+
+
 import java.util.Iterator;
 
 // linked list implementation of a collection of items

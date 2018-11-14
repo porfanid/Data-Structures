@@ -1,4 +1,8 @@
-
+/**
+ *Pavlos Orfanidis 4134
+ *Pantelis Rempakos 4279
+ *Giorgos Kamaridis 4264
+ */
 /**
  * creating a class to store the graph.
  * @author porfanid
@@ -324,6 +328,64 @@ public class Graph {
     
     
     
+    /**
+     * checks if the node we want to check has neighbors.
+     * 
+     * We know that the node has at least one connection. Otherwise we wouldn't bew able to get to it.
+     * 
+     * What we are interested in is if it has more than one connections.
+     * 
+     * @param currentNode
+     * @return
+     */
+    public boolean hasNext(int currentNode)
+    {
+    	return adjacencyLists[currentNode].length>1;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /**
+     * Checks if a node contains a neighbor.
+     * @param startNode
+     * @param desiredNeighbor
+     * @return boolean whether the desiredNeighbor is connected to the startNode.
+     */
+    public boolean containsNeighbor(int startNode, int desiredNeighbor)
+    {
+    	
+    	Iterable<Integer> allNeighbors=adj(startNode);
+    	
+    	
+    	boolean response=false;
+    	for(Integer neighbor:allNeighbors)
+    	{
+    		if(neighbor.equals(desiredNeighbor))
+    		{
+    			return true;
+    		}
+    		else
+    		{
+    			if(neighbor.equals(startNode))
+    			{
+    				continue;
+    			}
+    			
+    			response=false;
+    			//response=containsNeighbor(neighbor,desiredNeighbor);
+    		}
+    	}
+    	
+    	
+    	return response;
+    	
+    }
     
     
     
@@ -334,7 +396,8 @@ public class Graph {
     
     
     
-    /**\
+    
+    /**
      * compute distance (minimum number of edges) from v to w
      * @param v
      * @param w
@@ -342,16 +405,24 @@ public class Graph {
      */
     int distance(int v, int w)
     {
-    	/*
-    	Queue<Integer> result = bfs(v);
     	
-    	Integer[] list=(Integer[]) result.toArray();
+    	if(containsNeighbor(v,w))
+    	{
+    		return 1;
+    	}
     	
-    	int listLength=list.length;
-
-        return -1; // return -1 if w is not reachable from v
-        */
-    	return 0;
+    	Iterable<Integer> allNeighbors=adj(v);
+    	for(Integer neighbor:allNeighbors)
+    	{
+    		if(neighbor.equals(v))
+    		{
+    			continue;
+    		}
+    		//return distance+distance(neighbor,w);
+    	}
+    	
+    	
+    	return - 1;
     }
     
     /* find and print shortest path from v to w */
@@ -431,6 +502,7 @@ public class Graph {
         
         
         System.out.println("Graph construction time = " + (constructTime - startTime));
+        
         G.printGraph();
         
         int dist = G.distance(0,(N-1)/2);

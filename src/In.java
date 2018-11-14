@@ -1,3 +1,8 @@
+/**
+ *Pavlos Orfanidis 4134
+ *Pantelis Rempakos 4279
+ *Giorgos Kamaridis 4264
+ */
 
 /**
  * Various input methods
